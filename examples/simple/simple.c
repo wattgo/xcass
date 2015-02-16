@@ -7,7 +7,7 @@ int main(int argc, char **argv) {
 
 	const char *hosts = "node05,node06,node07";
 	const char *keyspace = "datastax_examples";
-	unsigned int port = 9043;
+	unsigned int port = 9042;
 
 	const char *playlist_id = "62c36092-82a1-3a00-93d1-46196ee77204";
 	CassUuid uuid;
