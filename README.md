@@ -1,6 +1,6 @@
 ##xcass
 
-###desc
+###description
 
 A bunch of helpers to make your life easier while using the DataStax C/C++ Driver for Apache Cassandra ;)
 
@@ -57,6 +57,6 @@ from [examples/simple/simple.c](examples/simple/simple.c)
 
 *	prepared statement
 *	batch queries
-*	some missing getter
-*	doc
-*	...
+*	some missing getters
+*	improve documentation
+
