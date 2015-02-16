@@ -53,6 +53,9 @@ from [examples/simple/simple.c](examples/simple/simple.c)
 	xcass_cleanup(xs);
 ```
 
+Feel free to contribute !
+
+
 ###TODO
 
 *	prepared statement
