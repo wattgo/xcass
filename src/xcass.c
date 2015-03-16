@@ -647,27 +647,33 @@ xcass_iget_collection(xcass_row_t *r,
     return cass_iterator_from_collection(value);
 }
 
-CassString
+CassString *
 xcass_get_string(xcass_row_t *r,
                  const char *name) {
 
-    CassString str;
+    CassString *str = (CassString *) malloc(sizeof(CassString));
     const CassValue *value = xcass_get_value(r, name);
-    if(value)
-        cass_value_get_string(value, &str);
+    if(!value) {
+        free(str);
+        return NULL;
+    }
 
+    cass_value_get_string(value, str);
     return str;
 }
 
-CassString
+CassString *
 xcass_iget_string(xcass_row_t *r,
                   unsigned int index) {
 
-    CassString str;
+    CassString *str = (CassString *) malloc(sizeof(CassString));
     const CassValue *value = xcass_iget_value(r, index);
-    if(value)
-        cass_value_get_string(value, &str);
+    if(!value) {
+        free(str);
+        return NULL;
+    }
 
+    cass_value_get_string(value, str);
     return str;
 }
 
@@ -811,67 +817,69 @@ xcass_iget_boolean(xcass_row_t *r,
     return b;
 }
 
-CassBytes
+CassBytes *
 xcass_get_bytes(xcass_row_t *r,
                 const char *name) {
     
-    CassBytes bytes;
+    CassBytes *bytes = (CassBytes *) malloc(sizeof(CassBytes));
     const CassValue *value = xcass_get_value(r, name);
-    if(!value)
-        return bytes;
+    if(!value) {
+        free(bytes);
+        return NULL;
+    }
 
-    cass_value_get_bytes(value, &bytes);
+    cass_value_get_bytes(value, bytes);
     return bytes;
 }
 
-CassBytes
+CassBytes *
 xcass_iget_bytes(xcass_row_t *r,
                  unsigned int index) {
 
-    CassBytes bytes;
+    CassBytes *bytes = (CassBytes *) malloc(sizeof(CassBytes));
     const CassValue *value = xcass_iget_value(r, index);
-    if(!value)
-        return bytes;
+    if(!value) {
+        free(bytes);
+        return NULL;
+    }
 
-    cass_value_get_bytes(value, &bytes);
+    cass_value_get_bytes(value, bytes);
     return bytes;
 }
 
-CassUuid
+CassUuid *
 xcass_get_uuid(xcass_row_t *r,
                const char *name) {
 
-    CassUuid uuid;
+    CassUuid *uuid = (CassUuid *) malloc(sizeof(CassUuid));
     const CassValue *value = xcass_get_value(r, name);
-    if(!value)
-        return uuid;
+    if(!value) {
+        free(uuid);
+        return NULL;
+    }
 
-    char *s = (char *) malloc(CASS_UUID_STRING_LENGTH);
-    memset(s, 0, CASS_UUID_STRING_LENGTH);
-    cass_value_get_uuid(value, &uuid);
-
+    cass_value_get_uuid(value, uuid);
     return uuid;
 }
 
-CassUuid
+CassUuid *
 xcass_iget_uuid(xcass_row_t *r,
                 unsigned int index) {
 
-    CassUuid uuid;
+    CassUuid *uuid = (CassUuid *) malloc(sizeof(CassUuid));
     const CassValue *value = xcass_iget_value(r, index);
-    if(!value)
-        return uuid;
+    if(!value) {
+        free(uuid);
+        return NULL;
+    }
 
-    char *s = (char *) malloc(CASS_UUID_STRING_LENGTH);
-    memset(s, 0, CASS_UUID_STRING_LENGTH);
-    cass_value_get_uuid(value, &uuid);
-
+    cass_value_get_uuid(value, uuid);
     return uuid;
 }
 
 char *
 xcass_get_string_uuid(xcass_row_t *r,
-               const char *name) {
+                      const char *name) {
 
     const CassValue *value = xcass_get_value(r, name);
     if(!value)
@@ -887,7 +895,7 @@ xcass_get_string_uuid(xcass_row_t *r,
 
 char *
 xcass_iget_string_uuid(xcass_row_t *r,
-                unsigned int index) {
+                       unsigned int index) {
 
     const CassValue *value = xcass_iget_value(r, index);
     if(!value)

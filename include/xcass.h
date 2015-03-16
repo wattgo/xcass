@@ -193,11 +193,11 @@ CASS_EXPORT CassValueType
 cs_iget_type(xcass_row_t *r,
              unsigned int index);
 
-CASS_EXPORT CassString
+CASS_EXPORT CassString *
 xcass_get_string(xcass_row_t *r,
                  const char *name);
 
-CASS_EXPORT CassString
+CASS_EXPORT CassString *
 xcass_iget_string(xcass_row_t *r,
                   unsigned int index);
 
@@ -241,19 +241,19 @@ CASS_EXPORT cass_bool_t
 xcass_iget_boolean(xcass_row_t *r,
                    unsigned int index);
 
-CASS_EXPORT CassBytes
+CASS_EXPORT CassBytes *
 xcass_get_bytes(xcass_row_t *r,
                 const char *name);
 
-CASS_EXPORT CassBytes
+CASS_EXPORT CassBytes *
 xcass_iget_bytes(xcass_row_t *r,
                  unsigned int index);
 
-CASS_EXPORT CassUuid
+CASS_EXPORT CassUuid *
 xcass_get_uuid(xcass_row_t *r,
                const char *name);
 
-CASS_EXPORT CassUuid
+CASS_EXPORT CassUuid *
 xcass_iget_uuid(xcass_row_t *r,
                 unsigned int index);
 
