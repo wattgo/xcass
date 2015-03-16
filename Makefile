@@ -1,5 +1,5 @@
 export VERSION=0.4.1
-export NAME=xcass.so
+export NAME=libxcass.so
 export FULLNAME=$(NAME).$(VERSION)
 export CPP_DRIVER_VERSION=1.0.1
 export EXAMPLES=simple paging
