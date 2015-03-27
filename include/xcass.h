@@ -99,6 +99,10 @@ CASS_EXPORT xcass_query_t *
 xcass_query(xcass_t *xs,
             const char *fmt, ...);
 
+CASS_EXPORT xcass_query_t *
+xcass_query_nobind(xcass_t *xs,
+                   const char *fmt, ...);
+
 CASS_EXPORT void
 xcass_query_free(xcass_query_t *query);
 

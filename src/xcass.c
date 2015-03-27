@@ -478,6 +478,35 @@ xcass_query(xcass_t *xs,
     return query;
 }
 
+xcass_query_t *
+xcass_query_nobind(xcass_t *xs,
+                   const char *fmt, ...) {
+
+    va_list argv;
+
+    va_start(argv, fmt);
+    char *cql = (char *) malloc(strlen(fmt) + 1);
+    memset(cql, 0, strlen(fmt) + 1);
+    vsnprintf(buffer, strlen(fmt) + 1, cql, args);
+    va_end(argv);
+
+    xcass_query_t *query = (xcass_query_t *) malloc(sizeof(*query));
+    query->xs = xs;
+    query->statement = NULL;
+    query->result = NULL;
+    query->page_size = xs->page_size;
+    query->consistency = xs->consistency;
+
+    int err = xcass_statement(query, cql, 0);
+    if(err) {
+        xcass_query_free(query);
+        query = NULL;
+    }
+
+    free(cql);
+    return query;
+}
+
 void
 xcass_query_free(xcass_query_t *query) {
     if(query->result)
