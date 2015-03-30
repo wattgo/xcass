@@ -95,6 +95,11 @@ CASS_EXPORT void
 xcass_settings(xcass_t *xs,
                const char *settings, ...);
 
+void
+xcass_auth(xcass_t *xs,
+           const char *username,
+           const char *password);
+
 CASS_EXPORT xcass_query_t *
 xcass_query(xcass_t *xs,
             const char *fmt, ...);
