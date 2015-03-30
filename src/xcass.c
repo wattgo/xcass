@@ -241,6 +241,14 @@ xcass_settings(xcass_t *xs,
     free(buf);
 }
 
+void
+xcass_auth(xcass_t *xs,
+           const char *username,
+           const char *password) {
+
+    cass_cluster_set_credentials(xs->cluster, username, password);
+}
+
 /**
  *  xcass query related function
  */
@@ -483,11 +491,11 @@ xcass_query_nobind(xcass_t *xs,
                    const char *fmt, ...) {
 
     va_list argv;
-
     va_start(argv, fmt);
-    char *cql = (char *) malloc(strlen(fmt) + 1);
-    memset(cql, 0, strlen(fmt) + 1);
-    vsnprintf(buffer, strlen(fmt) + 1, cql, args);
+
+    char *cql = (char *) malloc(2048);
+    memset(cql, 0, 2048);
+    vsnprintf(cql, 2048, fmt, argv);
     va_end(argv);
 
     xcass_query_t *query = (xcass_query_t *) malloc(sizeof(*query));
