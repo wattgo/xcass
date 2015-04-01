@@ -915,8 +915,8 @@ xcass_iget_uuid(xcass_row_t *r,
 }
 
 char *
-xcass_get_string_uuid(xcass_row_t *r,
-                      const char *name) {
+xcass_get_uuid_string_dup(xcass_row_t *r,
+                          const char *name) {
 
     const CassValue *value = xcass_get_value(r, name);
     if(!value)
@@ -931,8 +931,8 @@ xcass_get_string_uuid(xcass_row_t *r,
 }
 
 char *
-xcass_iget_string_uuid(xcass_row_t *r,
-                       unsigned int index) {
+xcass_iget_uuid_string_dup(xcass_row_t *r,
+                           unsigned int index) {
 
     const CassValue *value = xcass_iget_value(r, index);
     if(!value)

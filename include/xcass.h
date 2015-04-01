@@ -267,12 +267,12 @@ xcass_iget_uuid(xcass_row_t *r,
                 unsigned int index);
 
 CASS_EXPORT char *
-xcass_get_string_uuid(xcass_row_t *r,
-                      const char *name);
+xcass_get_uuid_string_dup(xcass_row_t *r,
+                          const char *name);
 
 CASS_EXPORT char *
-xcass_iget_string_uuid(xcass_row_t *r,
-                       unsigned int index);
+xcass_iget_uuid_string_dup(xcass_row_t *r,
+                           unsigned int index);
 
 /**
  *  extra...
