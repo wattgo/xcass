@@ -30,14 +30,14 @@
 #define XCASS_SETTINGS_REGEX \
             "([a-zA-Z_]+)[[:space:]]{0,}?=[[:space:]]{0,}?([a-zA-Z0-9.]+)"
 
-typedef struct xcass_type_mapping_t {
+typedef struct {
     const char *name;
     CassValueType type;
     //CassValueType key;    
     //CassValueType value;
 } xcass_type_mapping_t;
 
-typedef struct _xcass_t {
+typedef struct {
     CassCluster *cluster;
     CassSession *session;
     CassFuture *connect;
@@ -50,7 +50,7 @@ typedef struct _xcass_t {
     int page_size;
 } xcass_t;
 
-typedef struct _xcass_query_t {
+typedef struct {
     xcass_t *xs;
     CassConsistency consistency;
     int page_size;
@@ -60,13 +60,13 @@ typedef struct _xcass_query_t {
     const CassResult *result;
 } xcass_query_t;
 
-typedef struct _xcass_row_t {
+typedef struct {
     xcass_query_t *query;
     const CassRow *row;
     CassIterator *iterator;
 } xcass_row_t;
 
-typedef struct _xcass_custom_t {
+typedef struct {
     cass_size_t size;
     cass_byte_t **output;
 } xcass_custom_t;
