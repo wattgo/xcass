@@ -284,11 +284,11 @@ xcass_statement(xcass_query_t *query,
 }
 
 int
-xcass_bind(xcass_t *xs,
-           xcass_query_t *query,
-           xcass_type_mapping_t *types,
-           unsigned int count,
-           va_list ap) {
+xcass_bind_query(xcass_t *xs,
+                 xcass_query_t *query,
+                 xcass_type_mapping_t *types,
+                 unsigned int count,
+                 va_list ap) {
 
     unsigned int i;
     xcass_custom_t custom;
@@ -466,13 +466,35 @@ xcass_query(xcass_t *xs,
     query->page_size = xs->page_size;
     query->consistency = xs->consistency;
 
+/*
+CassError prepare_select_from_basic(CassSession* session, const CassPrepared** prepared) {
+  CassError rc = CASS_OK;
+  CassFuture* future = NULL;
+  const char* query = "SELECT * FROM examples.basic WHERE key = ?";
+
+  future = cass_session_prepare(session, query);
+  cass_future_wait(future);
+
+  rc = cass_future_error_code(future);
+  if (rc != CASS_OK) {
+    print_error(future);
+  } else {
+    *prepared = cass_future_get_prepared(future);
+  }
+
+  cass_future_free(future);
+
+  return rc;
+}
+ */
+
     int err = xcass_statement(query, cql, argc);
     if(err) {
         xcass_query_free(query);
         query = NULL;
     }
     else {
-        err = xcass_bind(xs, query, types, argc, argv);
+        err = xcass_bind_query(xs, query, types, argc, argv);
         if(err) {
             xcass_query_free(query);
             query = NULL;

@@ -128,11 +128,11 @@ CASS_EXPORT CassValueType
 xcass_get_type_byname(const char *name);
 
 CASS_EXPORT int
-xcass_bind(xcass_t *xs,
-           xcass_query_t *query,
-           xcass_type_mapping_t *types,
-           unsigned int count,
-           va_list ap);
+xcass_bind_query(xcass_t *xs,
+                 xcass_query_t *query,
+                 xcass_type_mapping_t *types,
+                 unsigned int count,
+                 va_list ap);
 
 CASS_EXPORT CassError
 xcass_execute(xcass_t *xs, xcass_query_t *query);
