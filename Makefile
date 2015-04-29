@@ -1,8 +1,8 @@
-export VERSION=0.4.2
+export VERSION=0.5.1
 export NAME=libxcass.so
 export FULLNAME=$(NAME).$(VERSION)
 export CPP_DRIVER_VERSION=1.0.1
-export EXAMPLES=simple paging
+export EXAMPLES=simple paging prepared batch
 
 HEADERS=include
 SRC=src
@@ -10,7 +10,7 @@ TARGETS=$(SRC) $(patsubst %,examples/%,$(EXAMPLES))
 
 all: $(TARGETS) lib
 	@for t in $(TARGETS); do $(MAKE) -C $$t; done
-	@echo "\nimport example keyspace :\n  $$ cqlsh yourhost -f examples/exampledb.cql\n"
+	@echo "\nimport example keyspace :\n  $$ cqlsh -f examples/exampledb.cql\n"
 
 lib: $(SRC)
 	$(MAKE) -C $(SRC) lib
