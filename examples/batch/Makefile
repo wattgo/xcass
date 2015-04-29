@@ -1,4 +1,4 @@
-NAME=simple
+NAME=batch
 
 CFLAGS=-I../../include -O2 -Wall -fPIC -g
 LDFLAGS=-lcassandra
